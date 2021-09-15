@@ -1,4 +1,6 @@
-# smoothforms - Simple web forms for 
+# smoothforms
+
+Web form generator, especially for static sites running on web hosting.
 
 ## Key features
 
