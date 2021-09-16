@@ -5,7 +5,7 @@ require_once("TCheckFields.php");
 class Form {
     use CheckFields;
 
-	private string $form_title;
+    private string $form_title;
     private string $form_template;
     private string $thankyou_template;
     private string $lang;
