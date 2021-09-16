@@ -1,0 +1,22 @@
+{
+  "formtitle": "Test Form",
+  "formtemplate": "form.html",
+  "thankyoutemplate": "thanks.html",
+  "lang": "fi",
+  "sendto": ["teetle.taxidermist@pettingzoo.example"],
+  "fields": [
+    {
+      "name": "field1",
+      "label": "First Field",
+      "type": "input",
+      "value": "",
+      "validators": []
+    },
+    {
+      "name": "field2",
+      "label": "Label for 2nd field",
+      "type": "input",
+      "value": "default value"
+    }
+  ]
+}
