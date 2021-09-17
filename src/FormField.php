@@ -1,11 +1,92 @@
 <?php
 
 abstract class FormField {
-    abstract public function GetHTML();
+    use CheckFields;
 
+    protected string $name;
+    protected string $label;
+    protected mixed $value;
+    protected string $type;
+    protected array $validators;
+
+    public function outputHTML()
+    {
+        $retVal = "";
+        $retVal .= $this->beginField();
+        $retVal .= $this->makeLabel();
+        $retVal .= $this->makeTag();
+        $retVal .= $this->endField();
+
+        return $retVal;
+    }
+
+    protected function beginField(): string {}
+    protected function endField(): string {}
+
+    abstract protected function makeTag(): string;
+    abstract protected function makeLabel(): string;
+
+    public function validate() { return true; }
+    
     static public function newFromObject($obj)
     {
-        
+        $required_fields = ["name", "type", "label"];
+        $errors = FormField::CheckFields($obj, $required_fields);
+        if(count($errors) > 0)
+        {
+            $err_msg = "";
+            foreach($errors as $error)
+                $err_msg .= "* ".$error."<br>\n"; 
+            throw new Exception("Invalid form field:\n<br>".$err_msg);
+        }
+
+        // return an object with a class approprite for the field type
+        switch ($obj->type) {
+            
+            // 'html' is not a form field, but a way of allowing the user to
+            // add text or images etc. in the middle of the form.
+            case 'html':
+                return new HTMLField($obj);
+                break;
+
+            // input types (HTML5)
+            case 'input':
+            case 'button':
+            case 'checkbox':
+            case 'color':
+            case 'date':
+            case 'datetime-local':
+            case 'email':
+            case 'file':
+            case 'hidden':
+            case 'image':
+            case 'month':
+            case 'number':
+            case 'password':
+            case 'radio':
+            case 'range':
+            case 'reset':
+            case 'search':
+            case 'submit':
+            case 'tel':
+            case 'text':
+            case 'time':
+            case 'url':
+            case 'week':
+                return new InputField($obj);
+                break;
+
+
+            // other form elements:
+            case 'select':
+            case 'textarea':
+            case 'button':
+            case 'datalist':
+            case 'output':
+            default:
+                return null;
+                break;
+        }
     }
 }
 

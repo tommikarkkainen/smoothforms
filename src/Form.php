@@ -1,7 +1,6 @@
 <?php
 
 require_once("TCheckFields.php");
-require_once("FormField.php");
 
 class Form {
     use CheckFields;
