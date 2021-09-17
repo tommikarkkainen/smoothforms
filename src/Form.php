@@ -1,6 +1,7 @@
 <?php
 
 require_once("TCheckFields.php");
+require_once("FormField.php");
 
 class Form {
     use CheckFields;
@@ -24,12 +25,28 @@ class Form {
 
         $errors = $this::CheckFields($json, $required_fields);
 
-        if(count($errors) == 0)
+        if(count($errors) > 0)
         {
-            echo "Is valid form!";
-        } else {
+            $err_msg = "";
             foreach($errors as $error)
-                echo $error; 
+                $err_msg .= "* ".$error."<br>\n"; 
+            throw new Exception("Invalid form:\n<br>".$err_msg);
+        }
+
+        // set mandatory properties
+        $this->form_title = $json->formtitle;
+        $this->form_template = $json->formtemplate;
+        $this->thankyou_template = $json->thankyoutemplate;
+        $this->send_to = $json->sendto;
+
+        // set optional properties
+        $this->lang = property_exists($json, "lang") ? $json->lang : "";
+
+        $this->fields = array();
+        foreach($json->fields as $field)
+        {
+            $newField = FormField::newFromObject($field);
+            array_push($this->fields, $newField);
         }
         
     }
