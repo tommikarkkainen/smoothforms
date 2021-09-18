@@ -5,6 +5,7 @@
  */
 class TagFactory {
     private string $tag_name;
+    private string $internal_text;
     private bool $self_closing;
     private array $attributes;
     private array $children;
@@ -52,7 +53,7 @@ class TagFactory {
 
         foreach($this->children as $child)
         {
-            $ret_str .= $child->makeHTML;
+            $ret_str .= $child->makeHTML();
         }
 
         if(!$this->self_closing)

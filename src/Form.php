@@ -69,6 +69,8 @@ class Form {
                 "action" => $_SERVER['REQUEST_URI']
             )
         );
+        foreach($this->fields as $field)
+            $formTag->addChild($field->makeField());
         return $formTag->makeHTML();
     }
 }

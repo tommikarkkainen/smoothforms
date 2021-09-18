@@ -1,6 +1,6 @@
 <?php
 
-abstract class FormField {
+class FormField {
     use CheckFields;
 
     protected string $name;
@@ -9,22 +9,23 @@ abstract class FormField {
     protected string $type;
     protected array $validators;
 
-    public function outputHTML()
+    public function makeField(): TagFactory
     {
-        $retVal = "";
-        $retVal .= $this->beginField();
-        $retVal .= $this->makeLabel();
-        $retVal .= $this->makeTag();
-        $retVal .= $this->endField();
+        $field_id = "field_".$this->name;
 
-        return $retVal;
+        $field = new TagFactory("label", array("for" => $field_id));
+        $field->addChild(new TextElement($this->label . ": "));
+        $field->addChild(new TagFactory(
+            $this->type,
+            array(
+                "value" => $this->value,
+                "name" => $this->name,
+                "id" => $field_id
+            ), true
+        ));
+
+        return $field;
     }
-
-    protected function beginField(): string {}
-    protected function endField(): string {}
-
-    abstract protected function makeTag(): string;
-    abstract protected function makeLabel(): string;
 
     public function validate() { return true; }
     
