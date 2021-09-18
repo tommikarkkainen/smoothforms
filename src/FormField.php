@@ -79,13 +79,18 @@ class FormField {
 
 
             // other form elements:
-            case 'select':
             case 'textarea':
+                return new TextareaField($obj);
+                break;
+
+            case 'select':
             case 'button':
             case 'datalist':
             case 'output':
             default:
-                return null;
+                throw new Exception (
+                    "Unknown form field type ".$obj->type." requested."
+                );
                 break;
         }
     }

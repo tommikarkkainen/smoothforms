@@ -21,6 +21,18 @@
       "name": "email",
       "label": "Your Email",
       "type": "email"
+    },
+    {
+      "name": "message",
+      "label": "Your Message",
+      "type": "textarea",
+      "validators": ["required"]
+    },
+    {
+      "name": "submit",
+      "value": "Send",
+      "label": "send",
+      "type": "submit"
     }
   ]
 }
