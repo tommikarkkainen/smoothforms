@@ -4,11 +4,10 @@
  * A class used to generate HTML tags
  */
 class TagFactory {
-    private string $tag_name;
-    private string $internal_text;
-    private bool $self_closing;
-    private array $attributes;
-    private array $children;
+    protected string $tag_name;
+    protected bool $self_closing;
+    protected array $attributes;
+    protected array $children;
 
     /*!
      * Generate a TagFactory object using the constructor
@@ -24,6 +23,52 @@ class TagFactory {
         $this->attributes = $attributes;
         $this->self_closing = $self_closing;
         $this->children = array();
+    }
+
+    /*!
+     * Add a new attribute to the tag
+     */
+    public function addAttribute($key, $value)
+    {
+        $new_item = array($key => $value);
+        $this->attributes = array_merge($this->attributes, $new_item);
+    }
+
+    /*!
+     * Change the tag name
+     * @param $new_name the new name of the tag
+     */
+    public function setTagName($new_name)
+    {
+        $this->tag_name = $new_name;
+    }
+
+    /*!
+     * Find an element in the tag tree by its id attribute. First checks if the
+     * current object is the desired element. If not, check each of the
+     * children.
+     * 
+     * @param $id The form field id parameter being looked for
+     */
+    public function findByID(string $id): ?TagFactory
+    {
+        if(array_key_exists("id", $this->attributes))
+        {
+            if(strcmp($this->attributes["id"], $id) == 0)
+            {
+                return $this;
+            }
+        }
+
+        foreach($this->children as $child)
+        {
+            if($child->findByID($id) != null)
+            {
+                return $child;
+            }
+        }
+
+        return null;
     }
 
     /*!
