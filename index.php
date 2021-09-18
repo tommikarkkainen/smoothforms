@@ -18,4 +18,6 @@ try
     echo $e->getMessage();
 }
 
+echo $form->makeForm();
+
 ?>

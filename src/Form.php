@@ -2,6 +2,9 @@
 
 require_once("TCheckFields.php");
 
+/*!
+ * A class representing a web form
+ */
 class Form {
     use CheckFields;
 
@@ -12,6 +15,10 @@ class Form {
     private array $send_to;
     private array $fields;
 
+    /*!
+     * Create a Form object from a generic class object
+     * @param $json an object, e.g. returned by json_decode()
+     */
     public function __construct(object $json)
     {
         $required_fields = [
@@ -48,6 +55,21 @@ class Form {
             array_push($this->fields, $newField);
         }
         
+    }
+
+    /*!
+     * Outputs the HTML code for the form.
+     */
+    public function makeForm()
+    {
+        $formTag = new TagFactory(
+            "form",
+            array(
+                "method" => "POST",
+                "action" => $_SERVER['REQUEST_URI']
+            )
+        );
+        return $formTag->makeHTML();
     }
 }
 
