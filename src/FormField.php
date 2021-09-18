@@ -84,6 +84,9 @@ class FormField {
                 break;
 
             case 'select':
+                return new SelectField($obj);
+                break;
+                
             case 'button':
             case 'datalist':
             case 'output':

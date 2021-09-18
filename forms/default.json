@@ -23,6 +23,25 @@
       "type": "email"
     },
     {
+      "name": "subject",
+      "label": "What is your message about?",
+      "type": "select",
+      "options": [
+        {
+          "value": "thanks",
+          "label": "I'd like to thank Teetle"
+        },
+        {
+          "value": "feedback",
+          "label": "I have some constructive feedback for Teetle"
+        },
+        {
+          "value": "other",
+          "label": "My message is about something else"
+        }
+      ]
+    },
+    {
       "name": "message",
       "label": "Your Message",
       "type": "textarea",
