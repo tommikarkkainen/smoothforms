@@ -6,17 +6,21 @@
   "sendto": ["teetle.taxidermist@pettingzoo.example"],
   "fields": [
     {
-      "name": "field1",
-      "label": "First Field",
-      "type": "password",
-      "value": "",
-      "validators": []
+      "name": "info1",
+      "label": "<h1>Contact me!</h1><p>When Teetle the Timid Taxidermist is not at the petting zoo, he loves to read messages from his fans! Use this form to send yours!</p>",
+      "type": "html"
     },
     {
-      "name": "field2",
-      "label": "Label for 2nd field",
+      "name": "name",
+      "label": "Your Name",
       "type": "input",
-      "value": "default value"
+      "value": "",
+      "validators": ["required"]
+    },
+    {
+      "name": "email",
+      "label": "Your Email",
+      "type": "email"
     }
   ]
 }
