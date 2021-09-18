@@ -34,7 +34,12 @@ class SelectField extends InputField
 
         foreach($this->options as $option)
         {
-            $opt = new TagFactory("option", array("value" => $option->value));
+            $attributes = array("value" => $option->value);
+            if(property_exists($option, "selected") && $option->selected)
+            {
+                $attributes = array_merge($attributes, array("selected" => "true"));
+            }
+            $opt = new TagFactory("option", $attributes);
             $opt->addChild(new TextElement($option->label));
             $select_field->addChild($opt);
         }

@@ -37,7 +37,8 @@
         },
         {
           "value": "other",
-          "label": "My message is about something else"
+          "label": "My message is about something else",
+          "selected": true
         }
       ]
     },
