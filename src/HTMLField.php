@@ -8,9 +8,6 @@ class HTMLField extends FormField
         $this->label = $obj->label;
         $this->type = $obj->type;
     }
-
-    protected function makeLabel(): string { return ""; }
-    protected function makeTag(): string { return $this->label; }
 }
 
 ?>

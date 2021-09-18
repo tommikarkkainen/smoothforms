@@ -14,11 +14,7 @@ class InputField extends FormField
             $this->value = null;
 
         $this->validators = array();
-
     }
-
-    protected function makeLabel():string { return ""; }
-    protected function makeTag():string { return ""; }
 }
 
 ?>
