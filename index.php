@@ -18,6 +18,18 @@ try
     echo $e->getMessage();
 }
 
-echo $form->makeForm();
+switch ($_SERVER['REQUEST_METHOD']) {
+    case 'GET':
+        echo $form->makeForm();
+        break;
+
+    case 'POST':
+        $form->processSubmission();
+        break;
+    
+    default:
+        throw new Exception("Unsupported HTTP method.");
+        break;
+}
 
 ?>

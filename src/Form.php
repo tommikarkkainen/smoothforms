@@ -14,6 +14,7 @@ class Form {
     private string $lang;
     private array $send_to;
     private array $fields;
+    private bool $valid = false;
 
     /*!
      * Create a Form object from a generic class object
@@ -73,6 +74,54 @@ class Form {
             $formTag->addChild($field->makeField());
         return $formTag->makeHTML();
     }
+
+    /*!
+     * Process the submitted form data
+     */
+    public function processSubmission()
+    {
+        $this->validate();
+        if($this->valid)
+        {
+            $this->sendForm();
+        } else {
+            $this->makeForm();
+        }
+    }
+
+    /*!
+     * Validate the form fields. Sets the $valid member variable according
+     * to whether or not ALL form fields are valid (true) or not (false).
+     * 
+     * @returns true when all fields valid, false otherwise.
+     */
+    public function validate()
+    {
+        $valid = true;
+        foreach($this->fields as $field)
+        {
+            $field_valid = $field->validate();
+            if(!$field_valid)
+            {
+                $valid = false;
+            }
+        }
+
+        $this->valid = $valid;
+        return $valid;
+    }
+
+    /*!
+     * Send the form data
+     */
+    private function sendForm()
+    {
+        if($this->valid)
+        {
+            // TODO
+        }
+    }
+
 }
 
 ?>
