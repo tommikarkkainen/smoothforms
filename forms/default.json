@@ -1,0 +1,103 @@
+{
+  "formtitle": "Test Form",
+  "formtemplate": "form.html",
+  "thankyoutemplate": "thanks.html",
+  "lang": "fi",
+  "sendto": ["teetle.taxidermist@pettingzoo.example"],
+  "fields": [
+    {
+      "name": "info1",
+      "label": "<h1>Contact me!</h1><p>When Teetle the Timid Taxidermist is not at the petting zoo, he loves to read messages from his fans! Use this form to send yours!</p>",
+      "type": "html"
+    },
+    {
+      "name": "name",
+      "label": "Your Name",
+      "type": "input",
+      "value": "",
+      "validators": ["required"]
+    },
+    {
+      "name": "email",
+      "label": "Your Email",
+      "type": "email"
+    },
+    {
+      "name": "subject",
+      "label": "What is your message about?",
+      "type": "select",
+      "options": [
+        {
+          "value": "thanks",
+          "label": "I'd like to thank Teetle"
+        },
+        {
+          "value": "feedback",
+          "label": "I have some constructive feedback for Teetle"
+        },
+        {
+          "value": "other",
+          "label": "My message is about something else",
+          "selected": true
+        }
+      ]
+    },
+    {
+      "name": "location",
+      "label": "What is your dream holiday destination?",
+      "type": "datalist",
+      "options": [
+        {
+          "value": "London",
+          "label": "The capital of the UK"
+        },
+        {
+          "value": "Helsinki",
+          "label": "The capital of Finland"
+        },
+        {
+          "value": "The Petting Zoo",
+          "label": "Teetle really likes this one!"
+        },
+        {
+          "value": "Other"
+        }
+      ]
+    },
+    {
+      "type": "html",
+      "label": "From whom did you first hear of Teetle?",
+      "name": "where_heard_label"
+    },
+    {
+      "name": "where_heard",
+      "value": "barbrady",
+      "label": "Officer Barbrady",
+      "type": "radio"
+    },
+    {
+      "name": "where_heard",
+      "value": "kyle",
+      "label": "Kyle",
+      "type": "radio"
+    },
+    {
+      "name": "message",
+      "label": "Your Message",
+      "type": "textarea",
+      "validators": ["required"]
+    },
+    {
+      "name": "accept_terms_conditions",
+      "label": "I accept the terms and conditions of this form",
+      "type": "checkbox",
+      "validators": ["required"]
+    },
+    {
+      "name": "submit",
+      "value": "Send",
+      "label": "send",
+      "type": "submit"
+    }
+  ]
+}
