@@ -43,6 +43,28 @@
       ]
     },
     {
+      "name": "location",
+      "label": "What is your dream holiday destination?",
+      "type": "datalist",
+      "options": [
+        {
+          "value": "London",
+          "label": "The capital of the UK"
+        },
+        {
+          "value": "Helsinki",
+          "label": "The capital of Finland"
+        },
+        {
+          "value": "The Petting Zoo",
+          "label": "Teetle really likes this one!"
+        },
+        {
+          "value": "Other"
+        }
+      ]
+    },
+    {
       "name": "message",
       "label": "Your Message",
       "type": "textarea",

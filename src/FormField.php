@@ -84,11 +84,11 @@ class FormField {
                 break;
 
             case 'select':
+            case 'datalist':
                 return new SelectField($obj);
                 break;
                 
             case 'button':
-            case 'datalist':
             case 'output':
             default:
                 throw new Exception (

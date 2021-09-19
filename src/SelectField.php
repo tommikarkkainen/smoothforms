@@ -11,7 +11,7 @@ class SelectField extends InputField
     {
         $this->name = $obj->name;
         $this->label = $obj->label;
-        $this->type = "select";
+        $this->type = $obj->type;
 
         if(property_exists($obj, "options"))
         {
@@ -24,12 +24,21 @@ class SelectField extends InputField
     public function makeField(): TagFactory
     {
         $field_id = "field_".$this->name;
+        $list_id = "list_".$this->name;
 
         $field = new TagFactory("label", array("for" => $field_id));
         $field->addChild(new TextElement($this->label . ": "));
-        $select_field = new TagFactory("select", array(
-            "name" => $this->name,
-            "id" => $field_id
+        if($this->type == "datalist")
+        {
+            $input_field = new TagFactory("input", 
+                array("id" => $field_id, "name" => $this->name,
+                    "list" => $list_id), true);
+            $field->addChild($input_field);
+        }
+
+        $select_field = new TagFactory($this->type, array(
+            "name" => ($this->type=="select" ? $this->name : $list_id),
+            "id" => ($this->type=="select" ? $field_id : $list_id)
         ));
 
         foreach($this->options as $option)
@@ -39,8 +48,11 @@ class SelectField extends InputField
             {
                 $attributes = array_merge($attributes, array("selected" => "true"));
             }
+            
             $opt = new TagFactory("option", $attributes);
-            $opt->addChild(new TextElement($option->label));
+            if(property_exists($option, "label"))
+                $opt->addChild(new TextElement($option->label));
+
             $select_field->addChild($opt);
         }
 
