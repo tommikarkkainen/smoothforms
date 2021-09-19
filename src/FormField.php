@@ -53,7 +53,6 @@ class FormField {
             // input types (HTML5)
             case 'input':
             case 'button':
-            case 'checkbox':
             case 'color':
             case 'date':
             case 'datetime-local':
@@ -64,7 +63,6 @@ class FormField {
             case 'month':
             case 'number':
             case 'password':
-            case 'radio':
             case 'range':
             case 'reset':
             case 'search':
@@ -76,6 +74,10 @@ class FormField {
             case 'week':
                 return new InputField($obj);
                 break;
+
+            case 'radio':
+            case 'checkbox':
+                return new CheckboxField($obj);
 
 
             // other form elements:

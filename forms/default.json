@@ -65,9 +65,32 @@
       ]
     },
     {
+      "type": "html",
+      "label": "From whom did you first hear of Teetle?",
+      "name": "where_heard_label"
+    },
+    {
+      "name": "where_heard",
+      "value": "barbrady",
+      "label": "Officer Barbrady",
+      "type": "radio"
+    },
+    {
+      "name": "where_heard",
+      "value": "kyle",
+      "label": "Kyle",
+      "type": "radio"
+    },
+    {
       "name": "message",
       "label": "Your Message",
       "type": "textarea",
+      "validators": ["required"]
+    },
+    {
+      "name": "accept_terms_conditions",
+      "label": "I accept the terms and conditions of this form",
+      "type": "checkbox",
       "validators": ["required"]
     },
     {
