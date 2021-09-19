@@ -13,7 +13,10 @@ class InputField extends FormField
         else
             $this->value = null;
 
-        $this->validators = array();
+        if(property_exists($obj, "validators"))
+            $this->initValidators($obj->validators);
+        else
+            $this->initValidators(array());
     }
 
     public function makeField(): TagFactory

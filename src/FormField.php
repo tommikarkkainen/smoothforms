@@ -7,7 +7,7 @@ class FormField {
     protected string $label;
     protected mixed $value;
     protected string $type;
-    protected array $validators;
+    private array $validators;
 
     public function makeField(): TagFactory
     {
@@ -25,6 +25,25 @@ class FormField {
         ));
 
         return $field;
+    }
+
+    /*!
+     * Initialize the array of validators
+     */
+    protected function initValidators($obj)
+    {
+        if(!isset($this->validators))
+            $this->validators = array();
+
+        if(is_array($obj))
+        {
+            foreach($obj as $o)
+            {
+                $this->initValidators($o);
+            }
+        } else {
+            array_push($this->validators, $obj);
+        }
     }
 
     public function validate() { return true; }
