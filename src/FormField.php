@@ -56,6 +56,8 @@ class FormField {
      */
     public function validate(): bool
     {
+        $this->readSubmissionValue();
+
         if(!isset($this->validators))
         {
             return true;
@@ -70,6 +72,23 @@ class FormField {
         }
 
         return $valid; 
+    }
+
+    /*!
+     * Read the value submitted to this field, from the POST array. Write the
+     * value into the $value member variable, overriding any existing (default)
+     * value.
+     */
+    protected function readSubmissionValue()
+    {
+        if(isset($_POST[$this->name]))
+        {
+            $val = $_POST[$this->name];
+            $val = filter_var($val, FILTER_SANITIZE_STRING);
+            $this->value = $val;
+        } else {
+            $this->value = "";
+        }
     }
     
     static public function newFromObject($obj)

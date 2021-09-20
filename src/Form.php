@@ -85,7 +85,7 @@ class Form {
         {
             $this->sendForm();
         } else {
-            $this->makeForm();
+            echo $this->makeForm();
         }
     }
 
@@ -118,6 +118,7 @@ class Form {
     {
         if($this->valid)
         {
+            echo "Form was valid!";
             // TODO
         }
     }
