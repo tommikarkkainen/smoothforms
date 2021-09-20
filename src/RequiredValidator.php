@@ -21,6 +21,11 @@ class RequiredValidator extends Validator
 
         return true;
     }
+
+    public function getErrorString(): string
+    {
+        return "Required field";
+    }
 }
 
 ?>

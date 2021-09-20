@@ -57,6 +57,7 @@ class SelectField extends InputField
         }
 
         $field->addChild($select_field);
+        $this->makeValidatorErrors($field);
         
         return $field;
     }

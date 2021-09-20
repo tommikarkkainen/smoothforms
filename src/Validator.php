@@ -22,6 +22,12 @@ abstract class Validator
     public abstract function isValid(mixed $value): bool;
 
     /*!
+     * Returns the user-friendly error string explaining what was wrong with
+     * the value that was being validated.
+     */
+    public abstract function getErrorString(): string;
+
+    /*!
      * Returns a Validator based on a string variable typically originating
      * from a JSON object describing a form field.
      * 

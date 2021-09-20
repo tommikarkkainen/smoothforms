@@ -23,6 +23,7 @@ class CheckboxField extends InputField
         $label = new TagFactory("label", array("for" => $field_id));
         $label->addChild(new TextElement($this->label));
         $div->addChild($label);
+        $this->makeValidatorErrors($div);
 
         return $div;
     }

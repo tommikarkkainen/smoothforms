@@ -28,6 +28,8 @@ class InputField extends FormField
         $mod_field = $field->findById($field_id);
         $mod_field->setTagName("input");
         $mod_field->addAttribute("type", $this->type);
+
+        $this->makeValidatorErrors($field);
         
         return $field;
     }

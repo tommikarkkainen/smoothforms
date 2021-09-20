@@ -8,6 +8,7 @@ class FormField {
     protected mixed $value;
     protected string $type;
     private array $validators;
+    protected array $validator_errors;
 
     public function makeField(): TagFactory
     {
@@ -68,6 +69,9 @@ class FormField {
             if(!$validator->isValid($this->value))
             {
                 $valid = false;
+                if(!isset($this->validator_errors))
+                    $this->validator_errors = array();
+                array_push($this->validator_errors, $validator->getErrorString());
             }
         }
 
@@ -88,6 +92,25 @@ class FormField {
             $this->value = $val;
         } else {
             $this->value = "";
+        }
+    }
+
+    /*!
+     * Add validator errors to user output. Function is to be called from child
+     * classes.
+     */
+    protected function makeValidatorErrors(TagFactory $element)
+    {
+        if(isset($this->validator_errors))
+        {
+            foreach($this->validator_errors as $error)
+            {
+                $errTag = new TagFactory("span", array (
+                    "class" => "form-validator-error"
+                ));
+                $errTag->addChild(new TextElement($error));
+                $element->addChild($errTag);
+            }
         }
     }
     
