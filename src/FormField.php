@@ -42,11 +42,35 @@ class FormField {
                 $this->initValidators($o);
             }
         } else {
-            array_push($this->validators, $obj);
+            $new_validator = Validator::create($obj);
+            array_push($this->validators, $new_validator);
         }
     }
 
-    public function validate() { return true; }
+    /*!
+     * Run all validators associated with this form field. If the validator
+     * array is not initialized (e.g. due to validation being irrelevant to the
+     * field type, the validation is passed automatically.
+     * 
+     * @returns true if the field is valid (all validators) and false otherwise
+     */
+    public function validate(): bool
+    {
+        if(!isset($this->validators))
+        {
+            return true;
+        }
+        $valid = true;
+        foreach($this->validators as $validator)
+        {
+            if(!$validator->isValid($this->value))
+            {
+                $valid = false;
+            }
+        }
+
+        return $valid; 
+    }
     
     static public function newFromObject($obj)
     {
