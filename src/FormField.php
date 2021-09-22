@@ -113,6 +113,31 @@ class FormField {
             }
         }
     }
+
+    /*!
+     * Returns the submitted data as a TagFactory, to be used in creating HTML
+     * either for display in-browser, or for HTML emails.
+     */
+    public function makeFieldResponseHTML(): TagFactory
+    {
+        $p = new TagFactory("p");
+        $label = new TagFactory("strong");
+        $label->addChild(new TextElement($this->label.": "));
+        $p->addChild($label);
+        $p->addChild(new TextElement($this->value));
+
+        return $p;
+    }
+
+    /*!
+     * Returns the submitted data as plain text so that it can be included in
+     * plaintext emails.
+     */
+    public function makeFieldResponsePlain(): string
+    {
+        $str = $this->label . ": " . $this->value . "\r\n\r\n";
+        return $str;
+    }
     
     static public function newFromObject($obj)
     {

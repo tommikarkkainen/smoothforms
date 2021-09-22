@@ -116,11 +116,32 @@ class Form {
      */
     private function sendForm()
     {
-        if($this->valid)
+        if(!$this->valid)
         {
-            echo "Form was valid!";
-            // TODO
+            throw new Exception (
+                "Attempted to send a form that was not valid."
+            );
         }
+
+        $plaintext = "";
+        $html_section = new TagFactory("section");
+
+        $header_text = "New entry: " . $this->form_title;
+        $plaintext .= $header_text."\r\n\r\n";
+        $html_header = new TagFactory("h1");
+        $html_header->addChild(new TextElement("New entry: " . $this->form_title));
+        $html_section->addChild($html_header);
+
+        foreach($this->fields as $field)
+        {
+            $html_section->addChild($field->makeFieldResponseHTML());
+            $plaintext .= $field->makeFieldResponsePlain();
+        }
+
+        $pt = new TagFactory("pre");
+        $pt->addChild(new TextElement($plaintext));
+        $html_section->addChild($pt);
+        echo $html_section->makeHTML();
     }
 
 }

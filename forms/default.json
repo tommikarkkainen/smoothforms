@@ -90,8 +90,7 @@
     {
       "name": "accept_terms_conditions",
       "label": "I accept the terms and conditions of this form",
-      "type": "checkbox",
-      "validators": ["required"]
+      "type": "checkbox"
     },
     {
       "name": "submit",
