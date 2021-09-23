@@ -23,6 +23,37 @@ class TextareaField extends InputField
 
         return $field;
     }
+
+    /*!
+     * Returns the submitted data as a TagFactory, to be used in creating HTML
+     * either for display in-browser, or for HTML emails.
+     */
+    public function makeFieldResponseHTML(): TagFactory
+    {
+        $div = new TagFactory("div");
+        $p = new TagFactory("p");
+        $label = new TagFactory("strong");
+        $label->addChild(new TextElement($this->label.":"));
+        $p->addChild($label);
+        $div->addChild($p);
+
+        $pvalue = new TagFactory("p");
+        $pvalue->addChild(new TextElement($this->value));
+
+        $div->addChild($pvalue);
+
+        return $div;
+    }
+
+    /*!
+     * Returns the submitted data as plain text so that it can be included in
+     * plaintext emails.
+     */
+    public function makeFieldResponsePlain(): string
+    {
+        $str = $this->label . ":\r\n\r\n" . $this->value . "\r\n\r\n";
+        return $str;
+    }
 }
 
 ?>
