@@ -27,6 +27,70 @@ class CheckboxField extends InputField
 
         return $div;
     }
+
+    /*!
+     * Read the value submitted to this field, from the POST array. Write the
+     * value into the $value member variable. The JSON-specified $value will be
+     * overridden. The overridden value can be identified by the fact that the
+     * CheckboxField::readSubmissionValue writes a bool value.
+     */
+    protected function readSubmissionValue()
+    {
+        if(isset($_POST[$this->name]))
+        {
+            if(strcmp($this->value, $_POST[$this->name]) == 0)
+            {
+                $this->value = true;
+            } else {
+                $this->value = false;
+            }
+        } else {
+            $this->value = false;
+        }
+    }
+
+    private function getCheckboxString()
+    {
+        $str = "";
+        if($this->type == "checkbox")
+        {
+            $str = $this->value === true ? "[x] " : "[ ] ";
+        }
+
+        if($this->type == "radio")
+        {
+            $str = $this->value === true ? "(*) " : "( ) ";            
+        }
+
+        if($str != "")
+            $str .= $this->label;
+
+        return $str;
+    }
+
+    /*!
+     * Returns the submitted data as a TagFactory, to be used in creating HTML
+     * either for display in-browser, or for HTML emails.
+     */
+    public function makeFieldResponseHTML(): TagFactory
+    {
+        $cbstr = $this->getCheckboxString();
+        $p = new TagFactory("p");
+        $p->addChild(new TextElement($cbstr));
+
+        return $p;
+    }
+
+    /*!
+     * Returns the submitted data as plain text so that it can be included in
+     * plaintext emails.
+     */
+    public function makeFieldResponsePlain(): string
+    {
+        return $this->getCheckboxString() . "\r\n\r\n";
+        
+        return $str;
+    }
 }
 
 ?>
