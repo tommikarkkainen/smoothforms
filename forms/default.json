@@ -46,6 +46,7 @@
       "name": "location",
       "label": "What is your dream holiday destination?",
       "type": "datalist",
+      "strictmode": true,
       "options": [
         {
           "value": "London",
