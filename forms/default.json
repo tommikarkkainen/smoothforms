@@ -46,6 +46,7 @@
       "name": "location",
       "label": "What is your dream holiday destination?",
       "type": "datalist",
+      "strictmode": true,
       "options": [
         {
           "value": "London",
@@ -91,7 +92,7 @@
       "name": "accept_terms_conditions",
       "label": "I accept the terms and conditions of this form",
       "type": "checkbox",
-      "validators": ["required"]
+      "validators": "required"
     },
     {
       "name": "submit",

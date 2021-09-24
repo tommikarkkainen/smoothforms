@@ -14,6 +14,7 @@ class Form {
     private string $lang;
     private array $send_to;
     private array $fields;
+    private bool $valid = false;
 
     /*!
      * Create a Form object from a generic class object
@@ -73,6 +74,76 @@ class Form {
             $formTag->addChild($field->makeField());
         return $formTag->makeHTML();
     }
+
+    /*!
+     * Process the submitted form data
+     */
+    public function processSubmission()
+    {
+        $this->validate();
+        if($this->valid)
+        {
+            $this->sendForm();
+        } else {
+            echo $this->makeForm();
+        }
+    }
+
+    /*!
+     * Validate the form fields. Sets the $valid member variable according
+     * to whether or not ALL form fields are valid (true) or not (false).
+     * 
+     * @returns true when all fields valid, false otherwise.
+     */
+    public function validate()
+    {
+        $valid = true;
+        foreach($this->fields as $field)
+        {
+            $field_valid = $field->validate();
+            if(!$field_valid)
+            {
+                $valid = false;
+            }
+        }
+
+        $this->valid = $valid;
+        return $valid;
+    }
+
+    /*!
+     * Send the form data
+     */
+    private function sendForm()
+    {
+        if(!$this->valid)
+        {
+            throw new Exception (
+                "Attempted to send a form that was not valid."
+            );
+        }
+
+        $plaintext = "";
+        $html_section = new TagFactory("section");
+
+        $header_text = "New entry: " . $this->form_title;
+        $plaintext .= $header_text."\r\n\r\n";
+        $html_header = new TagFactory("h1");
+        $html_header->addChild(new TextElement("New entry: " . $this->form_title));
+        $html_section->addChild($html_header);
+
+        foreach($this->fields as $field)
+        {
+            $html_section->addChild($field->makeFieldResponseHTML());
+            $plaintext .= $field->makeFieldResponsePlain();
+        }
+
+        $pt = new TagFactory("pre");
+        $pt->addChild(new TextElement($plaintext));
+        $html_section->addChild($pt);
+        echo $html_section->makeHTML();
+    }
+
 }
 
 ?>
