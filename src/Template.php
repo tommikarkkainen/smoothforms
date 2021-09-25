@@ -39,11 +39,11 @@ class Template
         $retStr = $this->template;
         foreach($this->variables as $key => $value)
         {
-            $pattern = "/{{\s*".$key."\s*}}/g";
+            $pattern = "/{{\s*".$key."\s*}}/";
             $retStr = preg_replace($pattern, $value, $retStr);
         }
 
-        return retStr;
+        return $retStr;
     }
 }
 ?>
