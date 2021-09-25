@@ -1,7 +1,7 @@
 {
   "formtitle": "Test Form",
   "formtemplate": "form.html",
-  "thankyoutemplate": "thanks.html",
+  "thankyoutemplate": "form.html",
   "lang": "fi",
   "sendto": ["teetle.taxidermist@pettingzoo.example"],
   "fields": [
