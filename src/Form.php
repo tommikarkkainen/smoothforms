@@ -72,7 +72,14 @@ class Form {
         );
         foreach($this->fields as $field)
             $formTag->addChild($field->makeField());
-        return $formTag->makeHTML();
+
+        $tpl = new Template();
+        $tpl->loadTemplate("./templates/".$this->form_template);
+        $tpl->registerVariable("form_title", $this->form_title);
+        $tpl->registerVariable("form_css", file_get_contents("./static/default.css"));
+        $tpl->registerVariable("form", $formTag->makeHTML());
+
+        return $tpl->output();
     }
 
     /*!
