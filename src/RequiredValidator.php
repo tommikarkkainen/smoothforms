@@ -24,7 +24,8 @@ class RequiredValidator extends Validator
 
     public function getErrorString(): string
     {
-        return "Required field";
+        $translator = Translator::getInstance();
+        return $translator->text("RequiredValidator.required_field");
     }
 }
 

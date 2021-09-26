@@ -47,7 +47,9 @@ class Form {
         $this->send_to = $json->sendto;
 
         // set optional properties
-        $this->lang = property_exists($json, "lang") ? $json->lang : "";
+        $this->lang = property_exists($json, "lang") ? $json->lang : "default";
+        $translator = Translator::getInstance();
+        $translator->setLanguage($this->lang);
 
         $this->fields = array();
         foreach($json->fields as $field)
@@ -133,10 +135,14 @@ class Form {
         $plaintext = "";
         $html_section = new TagFactory("section");
 
-        $header_text = "New entry: " . $this->form_title;
+        $translator = Translator::getInstance();
+        $new_entry_string = sprintf($translator->text("Form.new_entry"),
+            $this->form_title);
+
+        $header_text = $new_entry_string;
         $plaintext .= $header_text."\r\n\r\n";
         $html_header = new TagFactory("h1");
-        $html_header->addChild(new TextElement("New entry: " . $this->form_title));
+        $html_header->addChild(new TextElement($new_entry_string));
         $html_section->addChild($html_header);
 
         foreach($this->fields as $field)
