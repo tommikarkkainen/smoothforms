@@ -20,7 +20,8 @@
     {
       "name": "email",
       "label": "Your Email",
-      "type": "email"
+      "type": "email",
+      "validators": ["email", "required"]
     },
     {
       "name": "subject",

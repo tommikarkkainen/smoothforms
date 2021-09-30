@@ -42,6 +42,10 @@ abstract class Validator
             case 'required':
                 return new RequiredValidator($validatorCommand);
                 break;
+
+            case 'email':
+                return new EmailValidator($validatorCommand);
+                break;
         }
 
         return null;

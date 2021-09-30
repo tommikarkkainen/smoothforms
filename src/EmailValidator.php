@@ -24,7 +24,7 @@ class EmailValidator extends Validator
     public function getErrorString(): string
     {
         $translator = Translator::getInstance();
-        return $translator->text("RequiredValidator.required_field");
+        return $translator->text("EmailValidator.invalid_email");
     }
 }
 
