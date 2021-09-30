@@ -37,14 +37,24 @@ abstract class Validator
     {
         $validatorCommand = trim(strtolower($validatorCommand));
 
+        // Validator command may consist of multiple parts. Only take the first
+        // part to determine what kind of validator to use here.
+        $validatorName = explode(":", $validatorCommand);
+        $validatorName = $validatorName[0];
+
         // simple validators
-        switch ($validatorCommand) {
+        switch ($validatorName) {
             case 'required':
                 return new RequiredValidator($validatorCommand);
                 break;
 
             case 'email':
                 return new EmailValidator($validatorCommand);
+                break;
+
+            case 'minlen':
+            case 'maxlen':
+                return new StringLengthValidator($validatorCommand);
                 break;
         }
 
