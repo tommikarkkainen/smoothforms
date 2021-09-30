@@ -1,7 +1,4 @@
 <?php
-/*!
- * Run all unit tests. When a new test file is added, add a call in this file.
- */
 
 try
 {
