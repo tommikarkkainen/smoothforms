@@ -1,7 +1,7 @@
 <?php
 
 /*!
- * Can be used to check if user input is a valid email address
+ * Can be used to check if user input is of an accepted length
  */
 class StringLengthValidator extends ValidatorWithArguments
 {
