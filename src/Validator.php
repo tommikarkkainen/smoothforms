@@ -56,6 +56,10 @@ abstract class Validator
             case 'maxlen':
                 return new StringLengthValidator($validatorCommand);
                 break;
+
+            case 'numeric':
+            case 'integer':
+                return new NumericValidator($validatorCommand);
         }
 
         return null;
