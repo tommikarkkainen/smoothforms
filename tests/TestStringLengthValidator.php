@@ -4,10 +4,13 @@
 try
 {
     $missingArgumentValidator = Validator::create("minlen");
+}catch (Exception $e) {}
+assert(!isset($missingArgumentValidator));
+
+try
+{
     $invalidArgumentValidator = Validator::create("minlen:invalid");
 }catch (Exception $e) {}
-
-assert(!isset($missingArgumentValidator));
 assert(!isset($invalidArgumentValidator));
 
 $minlen = Validator::create("minlen:5");
