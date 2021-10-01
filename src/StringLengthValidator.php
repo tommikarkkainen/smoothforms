@@ -3,16 +3,16 @@
 /*!
  * Can be used to check if user input is a valid email address
  */
-class StringLengthValidator extends Validator
+class StringLengthValidator extends ValidatorWithArguments
 {
     private int $compareLength;
     private string $mode;
 
     function __construct(string $validatorCommand)
     {
-        $cmdParts = explode(":", $validatorCommand);
+        parent::__construct($validatorCommand);
 
-        switch($cmdParts[0])
+        switch($this->arguments[0])
         {
             case "minlen":
                 $this->mode = "min";
@@ -25,20 +25,13 @@ class StringLengthValidator extends Validator
             default:
                 throw new Exception(
                     "Invalid command for StringLengthValidator: '".
-                    $cmdParts[0]."'"
+                    $this->arguments[0]."'"
                 );
         }
 
-        if(count($cmdParts) != 2)
-        {
-            throw new Exception(
-                $cmdParts[0] . " takes exactly one parameter,".
-                " but ". count($cmdParts) . " were supplied"
-            );
-        }
-
-        $this->compareLength = intval($cmdParts[1]);
-        
+        if(!is_numeric($this->arguments[1]))
+            throw new Exception("Length argument has to be a number");
+        $this->compareLength = intval($this->arguments[1]);
     }
 
     public function isValid(mixed $value): bool
