@@ -60,6 +60,10 @@ abstract class Validator
             case 'numeric':
             case 'integer':
                 return new NumericValidator($validatorCommand);
+
+            case 'min':
+            case 'max':
+                return new NumberValueValidator($validatorCommand);
         }
 
         return null;

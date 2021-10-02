@@ -80,7 +80,7 @@ class Translator
     {
         if(!isset($this->strings))
         {
-            trigger_error("Translated string ".$section.".".$key.
+            trigger_error("Translated string ".$key.
                 " was requested before a language was set. Using default ".
                 "language", E_USER_NOTICE);
             $this->setLanguage("default");

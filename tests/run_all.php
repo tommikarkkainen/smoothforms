@@ -12,9 +12,13 @@ spl_autoload_register(function ($class_name) {
         include $try2;
 });
 
+$translator = Translator::getInstance();
+$translator->setLanguage("default");
+
 include('TestRequiredValidator.php');
 include('TestEmailValidator.php');
 include('TestStringLengthValidator.php');
 include('TestNumericValidator.php');
+include('TestNumberValueValidator.php');
 
 ?>
