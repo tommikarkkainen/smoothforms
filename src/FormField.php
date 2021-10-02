@@ -5,7 +5,7 @@ class FormField {
 
     protected string $name;
     protected string $label;
-    protected mixed $value;
+    protected $value;
     protected string $type;
     private array $validators;
     protected array $validator_errors;
