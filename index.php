@@ -14,7 +14,13 @@ if(isset($_GET['form']))
 else
     die("");
 
-$json = json_decode(file_get_contents("forms/".$json.".json"));
+$filename = "forms/".$json.".json";
+if(!file_exists($filename))
+{
+    http_response_code(404);
+    die("Form not found");
+}
+$json = json_decode(file_get_contents($filename));
 
 try 
 {
