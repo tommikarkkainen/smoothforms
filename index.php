@@ -9,7 +9,18 @@ spl_autoload_register(function ($class_name) {
         include $try2;
 });
 
-$json = json_decode(file_get_contents("forms/default.json"));
+if(isset($_GET['form']))
+    $json = $_GET['form'];
+else
+    die("");
+
+$filename = "forms/".$json.".json";
+if(!file_exists($filename))
+{
+    http_response_code(404);
+    die("Form not found");
+}
+$json = json_decode(file_get_contents($filename));
 
 try 
 {
