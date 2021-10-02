@@ -40,9 +40,9 @@ class StringLengthValidator extends ValidatorWithArguments
         if($this->mode == "min")
             return $len >= $this->compareLength;
         if($this->mode == "max")
-            return  $len <= $this->compareLength;
+            return $len <= $this->compareLength;
         
-        $success = false;
+        return false;
     }
 
     public function getErrorString(): string
