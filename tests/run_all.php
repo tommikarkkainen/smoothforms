@@ -20,5 +20,6 @@ include('TestEmailValidator.php');
 include('TestStringLengthValidator.php');
 include('TestNumericValidator.php');
 include('TestNumberValueValidator.php');
+include('TestPatternValidator.php');
 
 ?>

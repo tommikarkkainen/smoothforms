@@ -10,7 +10,7 @@ abstract class ValidatorWithArguments extends Validator
         if(!isset($this->num_arguments))
             $this->num_arguments = 1;
 
-        $cmdParts = explode(":", $validatorCommand);
+        $cmdParts = explode(":", $validatorCommand, $this->num_arguments+1);
 
         if(count($cmdParts) != $this->num_arguments + 1)
         {
