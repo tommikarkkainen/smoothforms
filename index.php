@@ -9,7 +9,12 @@ spl_autoload_register(function ($class_name) {
         include $try2;
 });
 
-$json = json_decode(file_get_contents("forms/default.json"));
+if(isset($_GET['form']))
+    $json = $_GET['form'];
+else
+    die("");
+
+$json = json_decode(file_get_contents("forms/".$json.".json"));
 
 try 
 {
