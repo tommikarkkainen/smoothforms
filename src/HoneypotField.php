@@ -11,6 +11,8 @@
  */
 class HoneypotField extends InputField
 {
+    use HoneypotCSS;
+    
 	public function __construct(object $obj)
 	{
 		$this->name = $obj->name;
@@ -25,10 +27,7 @@ class HoneypotField extends InputField
 	public function makeField(): TagFactory
     {
         $field_id = "field_".$this->name;
-        $honeypot_class = base64_encode("honeypot-".$_SERVER['PHP_SELF']);
-        $honeypot_class = preg_replace("/[^a-zA-Z]/", "", $honeypot_class);
-        $honeypot_class = strtolower($honeypot_class);
-        $honeypot_class = substr($honeypot_class, 0, 6);
+        $honeypot_class = HoneypotField::generateHoneypotClassName();
         
         $field = new TagFactory("label", array(
         	"for" => $field_id, "class" => $honeypot_class));

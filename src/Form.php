@@ -7,6 +7,7 @@ require_once("TCheckFields.php");
  */
 class Form {
     use CheckFields;
+    use HoneypotCSS;
 
     private string $form_title;
     private string $form_template;
@@ -82,6 +83,7 @@ class Form {
         $tpl->loadTemplate("./templates/".$this->form_template);
         $tpl->registerVariable("form_title", $this->form_title);
         $tpl->registerVariable("form_css", file_get_contents("./static/default.css"));
+        $tpl->registerVariable("honeypot_css", Form::generateHoneypotCSS());
         $tpl->registerVariable("form", $formTag->makeHTML());
 
         return $tpl->output();
