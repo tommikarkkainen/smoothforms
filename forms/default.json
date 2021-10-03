@@ -12,6 +12,11 @@
       "type": "html"
     },
     {
+      "name": "title",
+      "label": "Title",
+      "type": "honeypot"
+    },
+    {
       "name": "name",
       "label": "Your Name",
       "type": "input",

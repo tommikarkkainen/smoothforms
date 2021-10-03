@@ -199,6 +199,10 @@ class FormField {
             case 'datalist':
                 return new SelectField($obj);
                 break;
+
+            case 'honeypot':
+                return new HoneypotField($obj);
+                break;
                 
             case 'button':
             case 'output':
