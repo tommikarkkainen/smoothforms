@@ -159,11 +159,17 @@ class Form {
         $tpl->registerVariable("form_title", $this->form_title);
         $tpl->registerVariable("form_css", file_get_contents("./static/default.css"));
         $tpl->registerVariable("form", $html_section->makeHTML());
-        echo $tpl->output();
 
         $addresses = implode(", ", $this->send_to);
         $from = "From: ".$this->from."\r\n";
         $sent = mail($addresses, $new_entry_string, $plaintext, $from);
+
+        if($sent)
+        {
+            echo $tpl->output();
+        } else {
+            echo $translator->text("Form.send_failed");
+        }
     }
 
 }
