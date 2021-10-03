@@ -42,7 +42,7 @@ class SelectField extends InputField
         {
             $input_field = new TagFactory("input", 
                 array("id" => $field_id, "name" => $this->name,
-                    "list" => $list_id), true);
+                    "list" => $list_id, "value" => $this->value), true);
             $field->addChild($input_field);
         }
 
