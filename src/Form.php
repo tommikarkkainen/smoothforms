@@ -154,10 +154,6 @@ class Form {
             $plaintext .= $field->makeFieldResponsePlain();
         }
 
-        $pt = new TagFactory("pre");
-        $pt->addChild(new TextElement($plaintext));
-        $html_section->addChild($pt);
-
         $tpl = new Template();
         $tpl->loadTemplate("./templates/".$this->thankyou_template);
         $tpl->registerVariable("form_title", $this->form_title);
