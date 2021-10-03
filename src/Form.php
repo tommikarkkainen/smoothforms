@@ -13,6 +13,7 @@ class Form {
     private string $thankyou_template;
     private string $lang;
     private array $send_to;
+    private string $from;
     private array $fields;
     private bool $valid = false;
 
@@ -27,6 +28,7 @@ class Form {
             "formtemplate",
             "thankyoutemplate",
             "sendto",
+            "from",
             "fields"
         ];
 
@@ -45,6 +47,7 @@ class Form {
         $this->form_template = $json->formtemplate;
         $this->thankyou_template = $json->thankyoutemplate;
         $this->send_to = $json->sendto;
+        $this->from = $json->from;
 
         // set optional properties
         $this->lang = property_exists($json, "lang") ? $json->lang : "default";
@@ -151,16 +154,22 @@ class Form {
             $plaintext .= $field->makeFieldResponsePlain();
         }
 
-        $pt = new TagFactory("pre");
-        $pt->addChild(new TextElement($plaintext));
-        $html_section->addChild($pt);
-
         $tpl = new Template();
         $tpl->loadTemplate("./templates/".$this->thankyou_template);
         $tpl->registerVariable("form_title", $this->form_title);
         $tpl->registerVariable("form_css", file_get_contents("./static/default.css"));
         $tpl->registerVariable("form", $html_section->makeHTML());
-        echo $tpl->output();
+
+        $addresses = implode(", ", $this->send_to);
+        $from = "From: ".$this->from."\r\n";
+        $sent = mail($addresses, $new_entry_string, $plaintext, $from);
+
+        if($sent)
+        {
+            echo $tpl->output();
+        } else {
+            echo $translator->text("Form.send_failed");
+        }
     }
 
 }

@@ -19,7 +19,7 @@ abstract class Validator
      * @param $value the value being validated
      * @returns true if valid and false otherwise
      */
-    public abstract function isValid(mixed $value): bool;
+    public abstract function isValid(string $value): bool;
 
     /*!
      * Returns the user-friendly error string explaining what was wrong with

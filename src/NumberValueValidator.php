@@ -34,7 +34,7 @@ class NumberValueValidator extends ValidatorWithArguments
         $this->compare = floatval($this->arguments[1]);
     }
 
-    public function isValid(mixed $value): bool
+    public function isValid(string $value): bool
     {
         $val = (double) filter_var($value, FILTER_SANITIZE_NUMBER_FLOAT,
             FILTER_FLAG_ALLOW_FRACTION);

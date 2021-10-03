@@ -10,7 +10,7 @@ class RequiredValidator extends Validator
             );
     }
 
-    public function isValid(mixed $value): bool
+    public function isValid(string $value): bool
     {
         if($value == null)
             return false;

@@ -22,7 +22,7 @@ class PatternValidator extends ValidatorWithArguments
         $this->pattern = $this->arguments[1];
     }
 
-    public function isValid(mixed $value): bool
+    public function isValid(string $value): bool
     {
         return preg_match($this->pattern, $value);
     }
