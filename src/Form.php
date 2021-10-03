@@ -13,6 +13,7 @@ class Form {
     private string $thankyou_template;
     private string $lang;
     private array $send_to;
+    private string $from;
     private array $fields;
     private bool $valid = false;
 
@@ -27,6 +28,7 @@ class Form {
             "formtemplate",
             "thankyoutemplate",
             "sendto",
+            "from",
             "fields"
         ];
 
@@ -45,6 +47,7 @@ class Form {
         $this->form_template = $json->formtemplate;
         $this->thankyou_template = $json->thankyoutemplate;
         $this->send_to = $json->sendto;
+        $this->from = $json->from;
 
         // set optional properties
         $this->lang = property_exists($json, "lang") ? $json->lang : "default";

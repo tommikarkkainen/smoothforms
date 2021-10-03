@@ -4,6 +4,7 @@
   "thankyoutemplate": "form.html",
   "lang": "fi",
   "sendto": ["teetle.taxidermist@pettingzoo.example"],
+  "from": "Teetle's Website <noreply@pettingzoo.example>",
   "fields": [
     {
       "name": "info1",
