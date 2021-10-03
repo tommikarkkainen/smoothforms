@@ -1,3 +1,45 @@
 .form-validator-error {
 	color: red;
 }
+
+form
+{
+	width: 80%;
+	margin: auto;
+	position:  relative;
+}
+
+label
+{
+	display: block;
+	margin-top:  .4rem;
+	margin-bottom:  .4rem;
+	font-weight: bold;
+}
+
+div.checkbox-container
+{
+	margin-top:  .4rem;
+	margin-bottom:  .4rem;
+}
+
+div.checkbox-container label
+{
+	font-weight:  normal;
+}
+
+label > input, label > select
+{
+	position:  absolute;
+	right:  0;
+	width: 60%;
+}
+
+textarea
+{
+	width:  100%;
+}
+input + label
+{
+	display:  inline;
+}

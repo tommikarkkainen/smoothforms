@@ -13,9 +13,13 @@ class FormField {
     public function makeField(): TagFactory
     {
         $field_id = "field_".$this->name;
+        $no_label_for = array("submit");
+
+        $labeltext = in_array($this->type, $no_label_for)
+            ? "" : $this->label.": ";
 
         $field = new TagFactory("label", array("for" => $field_id));
-        $field->addChild(new TextElement($this->label . ": "));
+        $field->addChild(new TextElement($labeltext));
         $field->addChild(new TagFactory(
             $this->type,
             array(

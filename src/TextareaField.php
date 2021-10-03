@@ -9,6 +9,9 @@ class TextareaField extends InputField
     {
         $field_id = "field_".$this->name;
         $field = new TagFactory("div");
+        $label = new TagFactory("label", array("for" => $field_id));
+        $label->addChild (new TextElement($this->label.":"));
+        $field->addChild($label);
         $textarea = new TagFactory("textarea", array(
             "name" => $this->name,
             "id" => $field_id,

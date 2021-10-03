@@ -31,7 +31,7 @@ class CheckboxField extends InputField
             '', $this->originalValue);
         $field_id = "field_".$this->name."_".$stripped_value;
 
-        $div = new TagFactory("div");
+        $div = new TagFactory("div", array("class" => "checkbox-container"));
         $parameters = array(
             "type" => $this->type,
             "id" => $field_id,
