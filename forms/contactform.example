@@ -2,7 +2,6 @@
   "formtitle": "Contact",
   "formtemplate": "form.html",
   "thankyoutemplate": "form.html",
-  "lang": "fi",
   "sendto": ["teetle.taxidermist@pettingzoo.example"],
   "from": "Teetle's Website <noreply@pettingzoo.example>",
   "fields": [
@@ -34,6 +33,12 @@
       "label": "Subject",
       "type": "input",
       "validators": "required"
+    },
+    {
+      "name": "message",
+      "label": "Your Message",
+      "type": "textarea",
+      "validators": ["required"]
     },
     {
       "name": "expects_response",
