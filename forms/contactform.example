@@ -1,0 +1,56 @@
+{
+  "formtitle": "Contact",
+  "formtemplate": "form.html",
+  "thankyoutemplate": "form.html",
+  "lang": "fi",
+  "sendto": ["teetle.taxidermist@pettingzoo.example"],
+  "from": "Teetle's Website <noreply@pettingzoo.example>",
+  "fields": [
+    {
+      "name": "info1",
+      "label": "<h1>Contact me!</h1><p>When Teetle the Timid Taxidermist is not at the petting zoo, he loves to read messages from his fans! Use this form to send yours!</p>",
+      "type": "html"
+    },
+    {
+      "name": "title",
+      "label": "Title",
+      "type": "honeypot"
+    },
+    {
+      "name": "name",
+      "label": "Your Name",
+      "type": "input",
+      "value": "",
+      "validators": "required"
+    },
+    {
+      "name": "email",
+      "label": "Your Email",
+      "type": "email",
+      "validators": ["email", "required"]
+    },
+    {
+      "name": "subject",
+      "label": "Subject",
+      "type": "input",
+      "validators": "required"
+    },
+    {
+      "name": "expects_response",
+      "label": "I would like Teetle to reply to me",
+      "type": "checkbox"
+    },
+    {
+      "name": "accept_terms_conditions",
+      "label": "I accept the terms and conditions of this form",
+      "type": "checkbox",
+      "validators": "required"
+    },
+    {
+      "name": "submit",
+      "value": "Send",
+      "label": "send",
+      "type": "submit"
+    }
+  ]
+}
