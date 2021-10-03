@@ -34,7 +34,7 @@ class StringLengthValidator extends ValidatorWithArguments
         $this->compareLength = intval($this->arguments[1]);
     }
 
-    public function isValid(mixed $value): bool
+    public function isValid(string $value): bool
     {
         $len = strlen($value);
         if($this->mode == "min")
