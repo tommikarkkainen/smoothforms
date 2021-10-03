@@ -95,6 +95,14 @@ class SelectField extends InputField
         } else {
             $this->value = "";
         }
+
+        /*! Read through all the options, and adjust the "selected" parameter
+         * as necessary
+         */
+        foreach ($this->options as $option)
+        {
+            $option->selected = $option->value == $this->value;
+        }
     }
 
     /*!
