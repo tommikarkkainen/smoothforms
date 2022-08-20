@@ -86,6 +86,9 @@ class Form {
         $tpl->registerVariable("honeypot_css", Form::generateHoneypotCSS());
         $tpl->registerVariable("form", $formTag->makeHTML());
 
+        $lang = $this->lang == "default" ? "en" : $this->lang;
+        $tpl->registerVariable("lang", $lang);
+
         return $tpl->output();
     }
 
