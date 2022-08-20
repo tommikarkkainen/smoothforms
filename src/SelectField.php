@@ -89,8 +89,7 @@ class SelectField extends InputField
             {
                 $this->value = $this->getStrictValue($_POST[$this->name]);
             } else {
-                $this->value = filter_var($_POST[$this->name],
-                    FILTER_SANITIZE_STRING);
+                $this->value = htmlspecialchars($_POST[$this->name]);
             }
         } else {
             $this->value = "";
@@ -125,7 +124,7 @@ class SelectField extends InputField
             }
         }
 
-        $str = filter_var($str, FILTER_SANITIZE_STRING);
+        $str = htmlspecialchars($str);
         return $str;
     }
 }

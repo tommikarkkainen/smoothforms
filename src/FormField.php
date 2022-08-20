@@ -92,7 +92,7 @@ class FormField {
         if(isset($_POST[$this->name]))
         {
             $val = $_POST[$this->name];
-            $val = filter_var($val, FILTER_SANITIZE_STRING);
+            $val = htmlspecialchars($val);
             $this->value = $val;
         } else {
             $this->value = "";
